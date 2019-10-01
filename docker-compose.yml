@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  web:
+    env_file: .env
+    image: datacite/vaestgoetaspets
+    build: .
+    ports:
+      - "9050:80"
+    volumes:
+      - ./public:/home/app/webapp/public
+      - ./vendor:/home/app/webapp/vendor

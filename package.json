@@ -1,0 +1,28 @@
+{
+  "name": "vaestgoetapets",
+  "version": "0.8.0",
+  "private": true,
+  "description": "DataCite GraphQL Server",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/datacite/vaestgoetapets.git"
+  },
+  "license": "MIT",
+  "author": "Martin Fenner",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^0.10.5",
+    "apollo-server-express": "^2.9.4",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "8.* || >= 10.*"
+  }
+}
