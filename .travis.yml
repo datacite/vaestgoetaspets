@@ -31,13 +31,8 @@ install:
   - curl -sL https://sentry.io/get-cli/ | bash
   - sentry-cli --version
 
-before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
-
 script:
-  - ./cc-test-reporter after-build --exit-code 0
+  - node -v
 
 after_success:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
