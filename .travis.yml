@@ -62,16 +62,16 @@ after_success:
       git clone "https://${TRAVIS_SECURE_TOKEN}@github.com/datacite/mastino.git";
       ./dockerize -template vendor/docker/_vaestgoetaspets.auto.tfvars.tmpl:mastino/stage/services/federation/_vaestgoetaspets.auto.tfvars;
 
-      sentry-cli releases new vaestgoetaspets:${GIT_TAG} --finalize --project vaestgoetaspets;
+      sentry-cli releases new federation:${GIT_TAG} --finalize --project federation;
 
       if [ "${TRAVIS_TAG?}" ]; then
         ./dockerize -template vendor/docker/_vaestgoetaspets.auto.tfvars.tmpl:mastino/prod-eu-west/services/federation/_vaestgoetaspets.auto.tfvars;
-        sentry-cli releases deploys vaestgoetaspets:${GIT_TAG} new -e production;
+        sentry-cli releases deploys federation:${GIT_TAG} new -e production;
       else
-        sentry-cli releases deploys vaestgoetaspets:${GIT_TAG} new -e stage;
+        sentry-cli releases deploys federation:${GIT_TAG} new -e stage;
       fi
 
-      sentry-cli releases set-commits --auto vaestgoetaspets:${GIT_TAG};
+      sentry-cli releases set-commits --auto federation:${GIT_TAG};
       
       cd mastino;
       git remote;
