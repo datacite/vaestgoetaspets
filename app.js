@@ -20,7 +20,11 @@ const server = new ApolloServer({
   gateway,
   subscriptions: false,
   introspection: true,
-  playground: true
+  playground: {
+    settings: {
+      'editor.theme': 'light',
+    }
+  }
 });
 
 let app = express();
