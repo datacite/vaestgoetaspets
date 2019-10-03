@@ -71,7 +71,7 @@ after_success:
         sentry-cli releases deploys federation:${GIT_TAG} new -e stage;
       fi
 
-      sentry-cli releases set-commits --auto federation:${GIT_TAG};
+      # sentry-cli releases set-commits --auto federation:${GIT_TAG};
       
       cd mastino;
       git remote;
