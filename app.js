@@ -25,7 +25,7 @@ const server = new ApolloServer({
 
 let app = express();
 
-Sentry.init({ dsn: '__SENTRY_DSN__' });
+Sentry.init({ dsn: 'https://bd7b12de55984fdcb8b1a26f73d1901e@sentry.io/1767721' });
 
 // The request handler must be the first middleware on the app
 app.use(Sentry.Handlers.requestHandler());
