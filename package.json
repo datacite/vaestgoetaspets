@@ -19,7 +19,8 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "@sentry/node": "^5.6.2"
   },
   "devDependencies": {},
   "engines": {

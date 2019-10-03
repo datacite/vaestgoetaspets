@@ -3,6 +3,7 @@ if (typeof(PhusionPassenger) !== 'undefined') {
 }
 
 const express = require('express');
+const Sentry = require('@sentry/node');
 const compression = require('compression');
 const morgan  = require('morgan');
 const { ApolloServer } = require('apollo-server-express');
@@ -23,6 +24,14 @@ const server = new ApolloServer({
 });
 
 let app = express();
+
+Sentry.init({ dsn: '__SENTRY_DSN__' });
+
+// The request handler must be the first middleware on the app
+app.use(Sentry.Handlers.requestHandler());
+
+// The error handler must be before any other error middleware
+app.use(Sentry.Handlers.errorHandler());
 
 // compress responses
 app.use(compression());
