@@ -10,7 +10,7 @@ const { ApolloGateway } = require("@apollo/gateway");
 
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: 'profiles', url: 'https://api.test.datacite.org/researchers/graphql' }
+    { name: 'profiles', url: 'https://api.test.datacite.org/people/graphql' }
     // more services
   ],
 });
