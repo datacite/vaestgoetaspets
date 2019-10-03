@@ -29,6 +29,7 @@ RUN rm -f /etc/service/nginx/down && \
 COPY vendor/docker/webapp.conf /etc/nginx/sites-enabled/webapp.conf
 COPY vendor/docker/00_app_env.conf /etc/nginx/conf.d/00_app_env.conf
 COPY vendor/docker/cors.conf /etc/nginx/conf.d/cors.conf
+COPY vendor/docker/apollo.conf /etc/nginx/main.d/apollo.conf
 
 # Use Amazon NTP servers
 COPY vendor/docker/ntp.conf /etc/ntp.conf

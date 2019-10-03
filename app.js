@@ -9,10 +9,14 @@ const morgan  = require('morgan');
 const { ApolloServer } = require('apollo-server-express');
 const { ApolloGateway } = require("@apollo/gateway");
 
+const SENTRY_DSN = process.env.SENTRY_DSN;
+const PROFILES_URL = process.env.PROFILES_URL || 'https://api.test.datacite.org/people/graphql';
+const DOIS_URL = process.env.DOIS_URL || 'https://api.test.datacite.org/dois/graphql';
+
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: 'profiles', url: 'https://api.test.datacite.org/people/graphql' },
-    { name: 'dois', url: 'https://api.test.datacite.org/dois/graphql' }
+    { name: 'profiles', url: PROFILES_URL },
+    { name: 'dois', url: DOIS_URL }
     // more services
   ],
 });
@@ -30,7 +34,7 @@ const server = new ApolloServer({
 
 let app = express();
 
-Sentry.init({ dsn: 'https://bd7b12de55984fdcb8b1a26f73d1901e@sentry.io/1767721' });
+Sentry.init({ dsn: SENTRY_DSN });
 
 // The request handler must be the first middleware on the app
 app.use(Sentry.Handlers.requestHandler());
