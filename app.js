@@ -10,12 +10,14 @@ const { ApolloServer } = require('apollo-server-express');
 const { ApolloGateway } = require("@apollo/gateway");
 
 const PROFILES_URL = process.env.PROFILES_URL || 'https://api.test.datacite.org/people/graphql';
-const DOIS_URL = process.env.DOIS_URL || 'https://api.test.datacite.org/dois/graphql';
+const CLIENT_API_URL = process.env.CLIENT_API_URL || 'https://api.test.datacite.org/client-api/graphql';
+const API_URL = process.env.API_URL || 'https://api.test.datacite.org/api/graphql';
 
 const gateway = new ApolloGateway({
   serviceList: [
     { name: 'profiles', url: PROFILES_URL },
-    { name: 'dois', url: DOIS_URL }
+    { name: 'client-api', url: CLIENT_API_URL },
+    { name: 'api', url: API_URL }
     // more services
   ],
 });
