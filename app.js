@@ -9,7 +9,7 @@ const morgan  = require('morgan');
 const { ApolloServer } = require('apollo-server-express');
 const { ApolloGateway } = require("@apollo/gateway");
 
-const PROFILES_URL = process.env.PROFILES_URL || 'https://api.test.datacite.org/people/graphql';
+const PROFILES_URL = process.env.PROFILES_URL || 'https://api.test.datacite.org/profiles/graphql';
 const CLIENT_API_URL = process.env.CLIENT_API_URL || 'https://api.test.datacite.org/client-api/graphql';
 const API_URL = process.env.API_URL || 'https://api.test.datacite.org/api/graphql';
 
