@@ -16,10 +16,10 @@ const RE3DATA_URL = process.env.RE3DATA_URL || 'https://api.test.datacite.org/re
 
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: 'profiles', url: PROFILES_URL },
-    { name: 'client-api', url: CLIENT_API_URL },
-    { name: 'api', url: API_URL },
-    { name: 're3data', url: RE3DATA_URL }
+    // { name: 'profiles', url: PROFILES_URL },
+    { name: 'client-api', url: CLIENT_API_URL }
+    // { name: 'api', url: API_URL },
+    // { name: 're3data', url: RE3DATA_URL }
     // more services
   ],
 });
