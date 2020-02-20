@@ -2,7 +2,6 @@
 
 # Vaestgoetaspets
 
-
 Gateway for DataCite GraphQL API at https://api.datacite.org/graphql.
 
 ### Note on Patches/Pull Requests

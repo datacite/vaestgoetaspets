@@ -1,6 +1,6 @@
 {
   "name": "vaestgoetapets",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "description": "DataCite GraphQL Server",
   "repository": {
@@ -14,13 +14,13 @@
     "test": "tests"
   },
   "dependencies": {
-    "@apollo/gateway": "^0.10.5",
-    "apollo-server-express": "^2.9.4",
+    "@apollo/gateway": "^0.12.1",
+    "apollo-server-express": "^2.10.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
     "morgan": "^1.9.1",
-    "@sentry/node": "^5.6.2"
+    "@sentry/node": "^5.12.4"
   },
   "devDependencies": {},
   "engines": {
