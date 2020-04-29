@@ -14,13 +14,13 @@
     "test": "tests"
   },
   "dependencies": {
-    "@apollo/gateway": "^0.12.1",
-    "apollo-server-express": "^2.10.1",
+    "@apollo/gateway": "^0.14.1",
+    "apollo-server-express": "^2.12.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
-    "graphql": "^14.5.8",
-    "morgan": "^1.9.1",
-    "@sentry/node": "^5.12.4"
+    "graphql": "^14.0.0",
+    "morgan": "^1.10.0",
+    "@sentry/node": "^5.15.5"
   },
   "devDependencies": {},
   "engines": {
