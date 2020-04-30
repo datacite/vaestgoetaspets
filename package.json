@@ -1,6 +1,6 @@
 {
   "name": "vaestgoetapets",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "private": true,
   "description": "DataCite GraphQL Server",
   "repository": {
