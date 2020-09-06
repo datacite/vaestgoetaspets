@@ -31,6 +31,7 @@ const server = new ApolloServer({
   subscriptions: false,
   introspection: true,
   tracing: true,
+  cors: false,
   engine: {
     apiKey: process.env.APOLLO_API_KEY,
     schemaTag: process.env.NODE_ENV
