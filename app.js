@@ -25,11 +25,6 @@ const gateway = new ApolloGateway({
     // more services
   ],
 });
- 
-var corsOptions = {
-  origin: [/datacite\.org$/, 'http://localhost:3000'],
-  credentials: true
-};
 
 const server = new ApolloServer({
   gateway,
@@ -63,7 +58,7 @@ app.use(compression());
 // logging
 app.use(morgan('combined'));
 
-server.applyMiddleware({ app, cors: corsOptions });
+server.applyMiddleware({ app });
 
 if (typeof(PhusionPassenger) !== 'undefined') {
   app.listen('passenger');
