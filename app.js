@@ -27,7 +27,7 @@ const gateway = new ApolloGateway({
 });
  
 var corsOptions = {
-  origin: '*',
+  origin: /datacite\.org$/,
   credentials: true
 };
 
