@@ -26,15 +26,19 @@ const gateway = new ApolloGateway({
   ],
 });
  
+var corsOptions = {
+  origin: '*',
+  credentials: true
+};
+
 const server = new ApolloServer({
   gateway,
   subscriptions: false,
   introspection: true,
   tracing: true,
-  cors: false,
   engine: {
     apiKey: process.env.APOLLO_API_KEY,
-    schemaTag: process.env.NODE_ENV
+    graphVariant: process.env.NODE_ENV
   },
   playground: {
     settings: {
@@ -59,7 +63,7 @@ app.use(compression());
 // logging
 app.use(morgan('combined'));
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, cors: corsOptions });
 
 if (typeof(PhusionPassenger) !== 'undefined') {
   app.listen('passenger');
