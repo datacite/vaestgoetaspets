@@ -53,8 +53,8 @@ app.use(Sentry.Handlers.requestHandler());
 // The error handler must be before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
 
-// enable cors
-app.use(cors());
+// enable cors, including preflight requests
+app.options('*', cors())
 
 // compress responses
 app.use(compression());
