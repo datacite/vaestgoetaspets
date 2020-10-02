@@ -3,6 +3,7 @@ if (typeof(PhusionPassenger) !== 'undefined') {
 }
 
 const express = require('express');
+const cors = require('cors');
 const Sentry = require('@sentry/node');
 const compression = require('compression');
 const morgan  = require('morgan');
@@ -51,6 +52,9 @@ app.use(Sentry.Handlers.requestHandler());
 
 // The error handler must be before any other error middleware
 app.use(Sentry.Handlers.errorHandler());
+
+// enable cors
+app.use(cors());
 
 // compress responses
 app.use(compression());
