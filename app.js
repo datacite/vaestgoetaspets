@@ -54,7 +54,16 @@ app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.errorHandler());
 
 // enable cors, including preflight requests
-app.options('*', cors())
+var corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+  exposedHeaders: "X-Credential-Username,X-Anonymous-Consumer",
+  credentials: true,
+  preflightContinue: true,
+  optionsSuccessStatus: 200
+};
+app.options('*', cors(corsOptions))
 
 // compress responses
 app.use(compression());
