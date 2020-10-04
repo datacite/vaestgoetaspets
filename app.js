@@ -55,7 +55,7 @@ app.use(Sentry.Handlers.errorHandler());
 
 // enable cors, including preflight requests
 var corsOptions = {
-  origin: "*",
+  origin: ["http://localhost:3000", /\.datacite\.org$/],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Content-Type,Authorization",
   exposedHeaders: "X-Credential-Username,X-Anonymous-Consumer",
