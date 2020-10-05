@@ -1,8 +1,9 @@
-FROM phusion/passenger-full:0.9.30
+FROM phusion/passenger-full:1.0.11
 LABEL maintainer="mfenner@datacite.org"
 
 # Set correct environment variables
 ENV HOME /home/app
+ENV PASSENGER_DISABLE_LOG_PREFIX true
 
 # Use baseimage-docker's init process
 CMD ["/sbin/my_init"]
