@@ -7,13 +7,21 @@ const Sentry = require('@sentry/node');
 const compression = require('compression');
 const morgan  = require('morgan');
 const { ApolloServer } = require('apollo-server-express');
-const { ApolloGateway } = require("@apollo/gateway");
+const { ApolloGateway, RemoteGraphQLDataSource } = require("@apollo/gateway");
 
 const CLIENT_API_URL = process.env.CLIENT_API_URL || 'https://api.stage.datacite.org/client-api/graphql';
 // const PROFILES_URL = process.env.PROFILES_URL || 'https://api.stage.datacite.org/profiles/graphql';
 // const API_URL = process.env.API_URL || 'https://api.stage.datacite.org/api/graphql';
 // const RE3DATA_URL = process.env.RE3DATA_URL || 'https://api.stage.datacite.org/re3data/graphql';
 // const STRAPI_URL = process.env.STRAPI_URL || 'https://strapi.stage.datacite.org/graphql';
+
+class AuthenticationHeader extends RemoteGraphQLDataSource {
+  willSendRequest({ request, context }) {
+    // Pass the token from the context to underlying services
+    // via the authorization header
+    request.http.headers.set('authorization', context.token);
+  }
+}
 
 const gateway = new ApolloGateway({
   serviceList: [
@@ -24,6 +32,9 @@ const gateway = new ApolloGateway({
     // { name: 're3data', url: RE3DATA_URL }
     // more services
   ],
+  buildService({ name, url }) {
+    return new AuthenticationHeader({ url });
+  },
 });
 
 const server = new ApolloServer({
@@ -40,7 +51,13 @@ const server = new ApolloServer({
     settings: {
       'editor.theme': 'light',
     }
-  }
+  },
+  context: ({ req }) => {
+    // Get the user token from the headers
+    const token = req.headers.authorization || '';
+    // Add the token to the context
+    return { token };
+  },
 });
 
 let app = express();
