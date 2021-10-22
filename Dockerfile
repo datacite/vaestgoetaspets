@@ -1,5 +1,5 @@
-FROM phusion/passenger-full:1.0.11
-LABEL maintainer="mfenner@datacite.org"
+FROM phusion/passenger-nodejs:2.0.0
+LABEL maintainer="jrhoads@datacite.org"
 
 # Set correct environment variables
 ENV HOME /home/app
@@ -8,20 +8,18 @@ ENV PASSENGER_DISABLE_LOG_PREFIX true
 # Use baseimage-docker's init process
 CMD ["/sbin/my_init"]
 
-# fetch node12 and yarn sources
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
 # Set debconf to run non-interactively
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Update installed APT packages, clean up when done
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install wget git ntp yarn python-dev -y && \
+    apt-get install wget ntp python-dev -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install yarn
+RUN npm install --global yarn
 
 # Enable Passenger and Nginx and remove the default site
 # Preserve env variables for nginx
