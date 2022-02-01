@@ -1,4 +1,4 @@
-FROM phusion/passenger-nodejs:2.0.0
+FROM phusion/passenger-nodejs:2.1.0
 LABEL maintainer="jrhoads@datacite.org"
 
 # Set correct environment variables
