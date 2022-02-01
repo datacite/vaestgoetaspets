@@ -17,16 +17,16 @@
     "dev": "node app.js"
   },
   "dependencies": {
-    "@apollo/gateway": "^0.20.0",
-    "@sentry/node": "^5.15.5",
-    "apollo-server-express": "^2.17",
+    "@apollo/gateway": "^0.46.0",
+    "@sentry/node": "^6.17.3",
+    "apollo-server-express": "^3.6.2",
     "compression": "^1.7.4",
-    "express": "^4.17.1",
-    "graphql": "^14.0.0",
+    "express": "^4.17.2",
+    "graphql": "15",
     "morgan": "^1.10.0"
   },
   "devDependencies": {},
   "engines": {
-    "node": ">= 12.*"
+    "node": ">= 16.*"
   }
 }

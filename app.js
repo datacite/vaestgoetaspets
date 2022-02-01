@@ -7,13 +7,10 @@ const Sentry = require('@sentry/node');
 const compression = require('compression');
 const morgan  = require('morgan');
 const { ApolloServer } = require('apollo-server-express');
-const { ApolloGateway, RemoteGraphQLDataSource } = require("@apollo/gateway");
+const { ApolloGateway, IntrospectAndCompose, RemoteGraphQLDataSource } = require("@apollo/gateway");
+const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 
 const CLIENT_API_URL = process.env.CLIENT_API_URL || 'https://api.stage.datacite.org/client-api/graphql';
-// const PROFILES_URL = process.env.PROFILES_URL || 'https://api.stage.datacite.org/profiles/graphql';
-// const API_URL = process.env.API_URL || 'https://api.stage.datacite.org/api/graphql';
-// const RE3DATA_URL = process.env.RE3DATA_URL || 'https://api.stage.datacite.org/re3data/graphql';
-// const STRAPI_URL = process.env.STRAPI_URL || 'https://strapi.stage.datacite.org/graphql';
 
 class AuthenticationHeader extends RemoteGraphQLDataSource {
   willSendRequest({ request, context }) {
@@ -24,19 +21,17 @@ class AuthenticationHeader extends RemoteGraphQLDataSource {
 }
 
 const gateway = new ApolloGateway({
-  serviceList: [
-    { name: 'client-api', url: CLIENT_API_URL },
-    // { name: 'profiles', url: PROFILES_URL },
-    // { name: 'strapi', url: STRAPI_URL }
-    // { name: 'api', url: API_URL },
-    // { name: 're3data', url: RE3DATA_URL }
-    // more services
-  ],
+  supergraphSdl: new IntrospectAndCompose({
+    subgraphs: [
+      { name: 'client-api', url: CLIENT_API_URL },
+    ],
+  }),
   buildService({ name, url }) {
     return new AuthenticationHeader({ url });
   },
 });
 
+(async () => {
 const server = new ApolloServer({
   gateway,
   cors: false,
@@ -47,11 +42,13 @@ const server = new ApolloServer({
     apiKey: process.env.APOLLO_API_KEY,
     graphVariant: process.env.NODE_ENV
   },
-  playground: {
-    settings: {
-      'editor.theme': 'light',
-    }
-  },
+  plugins: [
+    ApolloServerPluginLandingPageGraphQLPlayground({
+      settings: {
+        'editor.theme': 'light',
+      }
+    }),
+  ],
   context: ({ req }) => {
     // Get the user token from the headers
     const token = req.headers.authorization || '';
@@ -76,6 +73,7 @@ app.use(compression());
 // logging
 app.use(morgan('combined'));
 
+await server.start();
 server.applyMiddleware({ app, cors: false });
 
 // disable headers
@@ -86,4 +84,5 @@ if (typeof(PhusionPassenger) !== 'undefined') {
 } else {
   app.listen(4000);
 }
- 
+})();
+
