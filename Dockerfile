@@ -14,7 +14,6 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # Update installed APT packages, clean up when done
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install wget ntp python-dev -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
