@@ -1,4 +1,5 @@
-[![Build & Deploy (Prod)](https://github.com/datacite/vaestgoetaspets/actions/workflows/release.yml/badge.svg)](https://github.com/datacite/vaestgoetaspets/actions/workflows/release.yml) [![Build & Deploy (Stage)](https://github.com/datacite/vaestgoetaspets/actions/workflows/stage.yml/badge.svg)](https://github.com/datacite/vaestgoetaspets/actions/workflows/stage.yml)  [![Docker Build Status](https://img.shields.io/docker/build/datacite/vaestgoetaspets.svg)](https://hub.docker.com/r/datacite/vaestgoetaspets)
+[![Production Release](https://github.com/datacite/vaestgoetaspets/actions/workflows/release.yml/badge.svg)](https://github.com/datacite/vaestgoetaspets/actions/workflows/release.yml)
+[![Staging Deploy](https://github.com/datacite/vaestgoetaspets/actions/workflows/stage.yml/badge.svg)](https://github.com/datacite/vaestgoetaspets/actions/workflows/stage.yml)
 
 # Vaestgoetaspets
 
