@@ -97,4 +97,3 @@ jobs:
           repository: 'datacite/mastino'
           branch: 'refs/heads/master'
           tags: false
-
