@@ -85,10 +85,13 @@ jobs:
           tar -xzvf dockerize-linux-amd64-v0.6.0.tar.gz
           rm dockerize-linux-amd64-v0.6.0.tar.gz
           ./dockerize -template prod-eu-west/services/federation/_vaestgoetaspets.auto.tfvars.tmpl:prod-eu-west/services/federation/_vaestgoetaspets.auto.tfvars
+          ./dockerize -template test/services/federation/_vaestgoetaspets.auto.tfvars.tmpl:test/services/federation/_vaestgoetaspets.auto.tfvars
+
 
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add prod-eu-west/services/federation/_vaestgoetaspets.auto.tfvars
+          git add test/services/federation/_vaestgoetaspets.auto.tfvars
           git commit -m "Adding vaestgoetaspets git variables for tag ${{ steps.extract_variables.outputs.GIT_TAG }}"
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
